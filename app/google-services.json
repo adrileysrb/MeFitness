@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "807916894510",
+    "project_id": "me-fitness-eb529",
+    "storage_bucket": "me-fitness-eb529.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:807916894510:android:24b5558d9a73a6a9e822bf",
+        "android_client_info": {
+          "package_name": "com.example.mefitness"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "807916894510-ujbp2hpid1nd6b48sh312h7lmp4t7bqm.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDU02s8Jzp1rGohj5BCP2WJDfWdo0Rhdxg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "807916894510-ujbp2hpid1nd6b48sh312h7lmp4t7bqm.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

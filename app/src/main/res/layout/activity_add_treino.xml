@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_height="match_parent"
+    android:layout_margin="10dp"
+    tools:context=".view.TreinoAddActivity">
+
+    <EditText
+        android:layout_marginTop="10dp"
+        android:id="@+id/editTextA01"
+        android:inputType="number"
+        android:layout_gravity="top"
+        android:layout_width="match_parent"
+        android:hint="Nome"
+        android:layout_height="wrap_content"/>
+    <EditText
+        android:id="@+id/editTextA02"
+
+        android:layout_gravity="bottom"
+        app:layout_anchorGravity="bottom"
+        app:layout_anchor="@id/editTextA01"
+        android:layout_width="match_parent"
+        android:hint="Descrição"
+        android:layout_height="wrap_content"/>
+    <Button
+        android:id="@+id/buttonA"
+        android:layout_width="match_parent"
+        android:layout_gravity="bottom"
+        android:background="@color/primaryLightColor"
+
+        android:textColor="@color/white"
+        android:text="Adicionar"
+        android:layout_height="wrap_content"/>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
