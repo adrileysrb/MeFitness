@@ -14,7 +14,7 @@ Tecnologias:
 </ul>
 
 <p><br></p>
-![Alt Text](https://media.giphy.com/media/vFKqnCdLPNOKc/giphy.gif)
+![Alt Text]("https://giphy.com/embed/VPtuA2YN43oC7zLtof")
 <p><br></p>
 Screenshots:
 
