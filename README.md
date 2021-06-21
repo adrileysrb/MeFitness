@@ -16,7 +16,7 @@ Tecnologias:
 <p><br></p>
 Screenshots:
 <p><br></p>
-<iframe src="https://giphy.com/embed/VPtuA2YN43oC7zLtof" width="270" height="480" frameBorder="0" class="giphy-embed" allowFullScreen></iframe><p><a href="https://giphy.com/gifs/VPtuA2YN43oC7zLtof">via GIPHY</a></p>
+<img  src="https://giphy.com/embed/VPtuA2YN43oC7zLtof" width="270" height="480" frameBorder="0" class="giphy-embed" allowFullScreen></img ><p><a href="https://giphy.com/gifs/VPtuA2YN43oC7zLtof">via GIPHY</a></p>
 
 <p><br></p>
 <figure>
