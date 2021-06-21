@@ -13,8 +13,7 @@ Tecnologias:
  
 </ul>
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/y881t8ilMyc" frameborder="0" allowfullscreen></iframe>
-      </iframe>
+Link demonstração em vídeo: https://www.youtube.com/embed/y881t8ilMyc"
 
 <p><br></p>
 Screenshots:
