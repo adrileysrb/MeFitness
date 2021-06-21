@@ -13,7 +13,7 @@ Tecnologias:
  
 </ul>
 
-Link demonstração em vídeo: https://www.youtube.com/embed/y881t8ilMyc"
+Link demonstração em vídeo: https://www.youtube.com/watch?v=tltinEJu03Q
 
 <p><br></p>
 Screenshots:
