@@ -14,8 +14,6 @@ Tecnologias:
 </ul>
 
 <p><br></p>
-Gif Intro ![]("https://giphy.com/embed/VPtuA2YN43oC7zLtof")
-<p><br></p>
 Screenshots:
 
 <p><br></p>
