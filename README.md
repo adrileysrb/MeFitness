@@ -18,30 +18,39 @@ Screenshots:
 <p><br></p>
 <figure>
 	<img src="screenshot-01.jpg" width="270" height="480" />
-	<figcaption>Splash Screen<br></figcaption>
 </figure>
 <p><br></p>
 <p><br></p>
 <figure>
-	<img src="Screenshot_2.png" width="265" height="440" />
-	<figcaption>Tela principal<br></figcaption>
+	<img src="screenshot-02.jpg" width="270" height="480" />
 </figure>
 <p><br></p>
 <p><br></p>
 <figure>
-	<img src="Screenshot_3.png" width="265" height="440" />
-	<figcaption>Tela principal - pesquisa por palavra chave<br></figcaption>
+	<img src="screenshot-03.jpg" width="270" height="480" />
 </figure>
 <p><br></p>
 <p><br></p>
 <figure>
-	<img src="Screenshot_4.png" width="265" height="440" />
-	<figcaption>Tela exibir notícia - resumo da notícia<br></figcaption>
+	<img src="screenshot-04.jpg" width="270" height="480" />
 </figure>
 <p><br></p>
 <p><br></p>
 <figure>
-	<img src="Screenshot_5.png" width="265" height="440" />
-	<figcaption>Tela exibir notícia - resumo da notícia, continuação com noticia completa abaixo<br></figcaption>
+	<img src="screenshot-05.jpg" width="270" height="480" />
 </figure>
-  
+<p><br></p>
+<p><br></p>
+<figure>
+	<img src="screenshot-06.jpg" width="270" height="480" />
+</figure>
+<p><br></p>
+<p><br></p>
+<figure>
+	<img src="screenshot-07.jpg" width="270" height="480" />
+</figure>
+  <p><br></p>
+<p><br></p>
+<figure>
+	<img src="screenshot-08.jpg" width="270" height="480" />
+</figure>
