@@ -17,7 +17,7 @@ Tecnologias:
 Screenshots:
 <p><br></p>
 <figure>
-	<img src="screenshot-01.jpg" width="265" height="440" />
+	<img src="screenshot-01.jpg" />
 	<figcaption>Splash Screen<br></figcaption>
 </figure>
 <p><br></p>
