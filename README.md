@@ -14,9 +14,9 @@ Tecnologias:
 </ul>
 
 <p><br></p>
-Screenshots:
+![Alt Text](https://media.giphy.com/media/vFKqnCdLPNOKc/giphy.gif)
 <p><br></p>
-<img  src="https://giphy.com/embed/VPtuA2YN43oC7zLtof" width="270" height="480" frameBorder="0" class="giphy-embed" allowFullScreen></img ><p><a href="https://giphy.com/gifs/VPtuA2YN43oC7zLtof">via GIPHY</a></p>
+Screenshots:
 
 <p><br></p>
 <figure>
