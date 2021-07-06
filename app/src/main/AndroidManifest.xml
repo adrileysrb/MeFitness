@@ -12,10 +12,18 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MeFitness">
         <activity
-            android:name=".view.LoginActivity"
-            android:label="Entrar"
+            android:name=".view.SplashScreen"
             android:screenOrientation="portrait"
-            android:theme="@style/Theme.MeFitness.NoActionBar"></activity>
+            android:theme="@style/Theme.MeFitness.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".view.LoginActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.MeFitness.NoActionBar"/>
         <activity
             android:name=".view.SignUpActivity"
             android:label="Cadastre-se"
@@ -41,20 +49,11 @@
             android:name=".view.TreinoEditActivity"
             android:label="Editar Treino"
             android:screenOrientation="portrait" />
-        <activity
-            android:name=".view.SplashScreen"
-            android:screenOrientation="portrait"
-            android:theme="@style/Theme.MeFitness.NoActionBar">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
         <activity
             android:name=".view.TreinosActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/Theme.MeFitness.NoActionBar"></activity>
+            android:theme="@style/Theme.MeFitness.NoActionBar"/>
     </application>
 
 </manifest>

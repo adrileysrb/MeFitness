@@ -21,110 +21,91 @@
         app:layout_anchorGravity="bottom"
         app:layout_anchor="@id/img"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-        app:startIconDrawable="@drawable/ic_baseline_person_24"
-        >
+        app:startIconDrawable="@drawable/ic_baseline_person_24">
         <com.google.android.material.textfield.TextInputEditText
             android:layout_marginTop="120dp"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
             android:layout_marginBottom="10dp"
-            android:id="@+id/name_signup"
+            android:id="@+id/signup_name"
             android:layout_width="match_parent"
-            android:hint="Nome"
+            android:hint="@string/name_text"
             android:layout_height="wrap_content"/>
     </com.google.android.material.textfield.TextInputLayout>
-
-
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-
         android:layout_gravity="bottom"
         app:layout_anchorGravity="bottom"
-        app:layout_anchor="@id/name_signup"
+        app:layout_anchor="@id/signup_name"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-        app:startIconDrawable="@drawable/ic_baseline_email_24"
-        >
+        app:startIconDrawable="@drawable/ic_baseline_email_24">
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/email_signup"
+            android:id="@+id/signup_email"
             android:layout_width="match_parent"
-            android:hint="Email"
+            android:hint="@string/email_text"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
             android:layout_marginBottom="10dp"
             android:layout_height="wrap_content"/>
     </com.google.android.material.textfield.TextInputLayout>
-
-
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-
         android:layout_gravity="bottom"
         app:layout_anchorGravity="bottom"
-        app:layout_anchor="@id/email_signup"
+        app:layout_anchor="@id/signup_email"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-        app:startIconDrawable="@drawable/ic_baseline_lock_24"
-        >
+        app:startIconDrawable="@drawable/ic_baseline_lock_24">
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/pass_signup"
+            android:id="@+id/signup_password"
             android:layout_width="match_parent"
             android:inputType="textPassword"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
             android:layout_marginBottom="10dp"
-            android:hint="Senha"
-
+            android:hint="@string/password_text"
             android:layout_height="wrap_content"/>
     </com.google.android.material.textfield.TextInputLayout>
-
-
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-
         android:layout_gravity="bottom"
         app:layout_anchorGravity="bottom"
-
-        app:layout_anchor="@id/pass_signup"
+        app:layout_anchor="@id/signup_password"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-        app:startIconDrawable="@drawable/ic_baseline_lock_24"
-        >
+        app:startIconDrawable="@drawable/ic_baseline_lock_24">
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/pass_signup2"
+            android:id="@+id/signup_confirmPassword"
             android:layout_width="match_parent"
-            android:hint="Insira novamente sua senha"
+            android:hint="@string/confirm_password_text"
             android:layout_marginLeft="10dp"
             android:inputType="textPassword"
             android:layout_marginRight="10dp"
             android:layout_marginBottom="10dp"
             android:layout_height="wrap_content"/>
     </com.google.android.material.textfield.TextInputLayout>
-
     <Button
-
-        android:id="@+id/btnSignUp_signup"
+        android:id="@+id/signup_btnSignUp"
         android:textColor="@color/white"
         android:layout_gravity="top"
         app:layout_anchorGravity="top"
-        app:layout_anchor="@id/tViewSignUp"
+        app:layout_anchor="@id/signup_tViewHaveAccount"
         android:layout_width="match_parent"
         android:layout_margin="70dp"
-        android:text="Cadastre-se"
+        android:text="@string/sign_up"
         android:background="@drawable/ripple_effect_with_background"
         android:layout_height="wrap_content"/>
     <TextView
         android:layout_marginBottom="30dp"
-        android:text="Já tem uma conta?"
+        android:text="@string/have_account"
         android:textStyle="bold"
         android:textSize="16dp"
         android:layout_gravity="bottom|center"
         android:textColor="@color/black"
-        android:id="@+id/tViewSignUp"
+        android:id="@+id/signup_tViewHaveAccount"
         android:background="@drawable/ripple_effect"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
     </TextView>
-
-
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

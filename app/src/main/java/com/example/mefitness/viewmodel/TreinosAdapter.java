@@ -22,95 +22,69 @@ import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.firestore.DocumentSnapshot;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
-
 public class TreinosAdapter extends FirestoreRecyclerAdapter<Treino, TreinosAdapter.TreinoHolder> {
 
     private Context context;
-    FirestoreRecyclerOptions<Treino> response;
-    ArrayList<Treino> a;
+    FirestoreRecyclerOptions<Treino> treinos;
 
-    public TreinosAdapter( FirestoreRecyclerOptions options, Context context) {
-        super(options);
+    public TreinosAdapter(FirestoreRecyclerOptions treinos, Context context) {
+        super(treinos);
         this.context = context;
-        this.response = options;
-        a = new ArrayList<>();
+        this.treinos = treinos;
     }
 
     @Override
-    protected void onBindViewHolder(TreinosAdapter.TreinoHolder holder, int position, Treino model) {
-        Map<String, Object> x;
-        if(model.getNome()==0){
-
-        } else {
-
-            if (model.getExercicioMap() == null) {
-                Map<String, Object> y = new HashMap<>();
-                Map<String, Object> z = new HashMap<>();
-                z.put("nome", "No Data");
-                z.put("image", "No Data");
-                z.put("observacoes", "No Data");
-                y.put("No data", z);
-                x = y;
-            } else {
-                x = model.getExercicioMap();
-            }
-            a.add(new Treino(model.getNome(),
-                    model.getDescricao(),
-                    model.getTimestramp(),
-                    x
-            ));
-
-            holder.treinoNome.setText(model.getNome() + "");
-            holder.treinoDescricao.setText(model.getDescricao());
-            holder.treinoDate.setText(model.getTimestramp().toString());
-
-            holder.treinoDeleteFAB.setOnClickListener(v -> {
-                AlertDialog alertDialog = new AlertDialog.Builder(context)
-                        .setMessage("Deseja apagar esse treino?")
-                        .create();
-                alertDialog.setButton(AlertDialog.BUTTON_POSITIVE, "Sim",
-                        (dialog, which) -> {
-                            delete(position);
-                            dialog.dismiss();
-                        });
-                alertDialog.setButton(AlertDialog.BUTTON_NEGATIVE, "Não",
-                        (dialog, which) -> dialog.dismiss());
-                alertDialog.show();
-            });
-
-            holder.itemView.setOnClickListener( v -> {
-                    DocumentSnapshot snapshot = response.getSnapshots().getSnapshot(position);
-                    Toast.makeText(context, "" + model.getNome(), Toast.LENGTH_SHORT).show();
-
-                    Intent intent = new Intent(context, ExerciciosActivity.class);
-                    Bundle bundle = new Bundle();
-                    bundle.putSerializable("value", a.get(position));
-                    bundle.putSerializable("docID", snapshot.getId());
-                    intent.putExtras(bundle);
-                    context.startActivity(intent);
-                ((Activity) context).overridePendingTransition(R.anim.slide_from_right, R.anim.slide_to_left);
-            });
-
-            holder.treinoEditFAB.setOnClickListener(v -> {
-                    Intent intent = new Intent(context, TreinoEditActivity.class);
-                    Bundle bundle = new Bundle();
-                    bundle.putSerializable("value", a.get(position));
-                     DocumentSnapshot snapshot = response.getSnapshots().getSnapshot(position);
-                    Toast.makeText(context, "" + model.getNome(), Toast.LENGTH_SHORT).show();
-                    bundle.putSerializable("position", position);
-                bundle.putSerializable("dbID", snapshot.getId()+"");
-                    intent.putExtras(bundle);
-                    context.startActivity(intent);
-            });
-        }
-
+    protected void onBindViewHolder(TreinosAdapter.TreinoHolder holder, int position, Treino treino) {
+        holder.treinoNome.setText(treino.getNome() + "");
+        holder.treinoDescricao.setText(treino.getDescricao());
+        holder.treinoDate.setText(treino.getTimestamp().toString());
+        holder.treinoDeleteFAB.setOnClickListener(v -> deleteTreino(position));
+        holder.itemView.setOnClickListener(v -> startExerciciosActivity(treino, position));
+        holder.treinoEditFAB.setOnClickListener(v -> startExerciciosEditActivity(treino, position));
     }
 
-    public void delete(int pos){
-        Toast.makeText(context, ""+pos, Toast.LENGTH_SHORT).show();
+    private void startExerciciosEditActivity(Treino model, int position) {
+        Intent intent = new Intent(context, TreinoEditActivity.class);
+        Bundle bundle = new Bundle();
+        bundle.putSerializable("value", model);
+        DocumentSnapshot snapshot = treinos.getSnapshots().getSnapshot(position);
+        bundle.putSerializable("position", position);
+        bundle.putSerializable("dbID", snapshot.getId() + "");
+        intent.putExtras(bundle);
+        context.startActivity(intent);
+    }
+
+    private void startExerciciosActivity(Treino model, int position) {
+        DocumentSnapshot documentSnapshot = treinos.getSnapshots().getSnapshot(position);
+        Intent intent = new Intent(context, ExerciciosActivity.class);
+        Bundle bundle = new Bundle();
+        bundle.putSerializable("value", model);
+        bundle.putSerializable("docID", documentSnapshot.getId());
+        intent.putExtras(bundle);
+        context.startActivity(intent);
+        ((Activity) context).overridePendingTransition(R.anim.slide_from_right, R.anim.slide_to_left);
+    }
+
+    public void deleteTreino(int position) {
+        AlertDialog alertDialog = new AlertDialog.Builder(context)
+                .setMessage("Deseja apagar esse treino?")
+                .create();
+        alertDialog.setButton(AlertDialog.BUTTON_POSITIVE, "Sim",
+                (dialog, which) -> {
+                    deleteTreinoInFirebase(position);
+                    dialog.dismiss();
+                    notifyDataSetChanged();
+                });
+        alertDialog.setButton(AlertDialog.BUTTON_NEGATIVE, "Não",
+                (dialog, which) -> {
+                    dialog.dismiss();
+                    notifyDataSetChanged();
+                });
+        alertDialog.show();
+    }
+
+    public void deleteTreinoInFirebase(int pos) {
+        Toast.makeText(context, "Treino apagado", Toast.LENGTH_SHORT).show();
         getSnapshots().getSnapshot(pos).getReference().delete();
     }
 
@@ -118,10 +92,8 @@ public class TreinosAdapter extends FirestoreRecyclerAdapter<Treino, TreinosAdap
     public TreinoHolder onCreateViewHolder(ViewGroup group, int i) {
         View view = LayoutInflater.from(group.getContext())
                 .inflate(R.layout.item_treino, group, false);
-
         return new TreinoHolder(view);
     }
-
 
     public class TreinoHolder extends RecyclerView.ViewHolder {
 
@@ -133,7 +105,6 @@ public class TreinosAdapter extends FirestoreRecyclerAdapter<Treino, TreinosAdap
 
         public TreinoHolder(View itemView) {
             super(itemView);
-
             treinoNome = itemView.findViewById(R.id.treinoNome);
             treinoDescricao = itemView.findViewById(R.id.treinoDescricao);
             treinoDate = itemView.findViewById(R.id.treinoDate);

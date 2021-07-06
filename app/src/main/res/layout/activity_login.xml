@@ -28,7 +28,7 @@
             android:textSize="30dp"
             android:textAlignment="center"
             app:layout_anchor="@id/linearlogo"
-            android:text="Me Fitness"
+            android:text="@string/app_name"
             android:layout_gravity="center|bottom"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"></TextView>
@@ -45,9 +45,9 @@
             android:layout_marginTop="220dp"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
-            android:id="@+id/email2_login"
+            android:id="@+id/login_email"
             android:layout_width="match_parent"
-            android:hint="Email"
+            android:hint="@string/email_text"
             android:layout_height="wrap_content"/>
     </com.google.android.material.textfield.TextInputLayout>
 <com.google.android.material.textfield.TextInputLayout
@@ -56,52 +56,51 @@
     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
     android:layout_gravity="bottom"
     app:layout_anchorGravity="bottom"
-    app:layout_anchor="@id/email2_login"
+    app:layout_anchor="@id/login_email"
     android:layout_height="wrap_content">
     <com.google.android.material.textfield.TextInputEditText
-        android:id="@+id/pass2_login"
+        android:id="@+id/login_password"
         android:layout_width="match_parent"
         android:layout_margin="10dp"
         android:inputType="textPassword"
-        android:hint="Senha"
+        android:hint="@string/password_text"
         android:layout_height="wrap_content"/>
 </com.google.android.material.textfield.TextInputLayout>
 
     <TextView
-        android:text="Esqueceu sua senha? "
+        android:text="@string/forgot_password"
         android:layout_gravity="bottom"
         android:textStyle="bold"
         android:textSize="16dp"
         android:textColor="@color/black"
         app:layout_anchorGravity="bottom|right"
-        app:layout_anchor="@id/pass2_login"
+        app:layout_anchor="@id/login_password"
         android:layout_marginTop="335dp"
         android:background="@drawable/ripple_effect"
-        android:id="@+id/textViewEsqueceuSenha"
+        android:id="@+id/login_tVForgotPassword"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"></TextView>
 
     <Button
-        android:id="@+id/btnLogin_login"
+        android:id="@+id/login_btnLogin"
         android:textColor="@color/white"
         android:layout_gravity="top"
         app:layout_anchorGravity="top"
         android:layout_margin="100dp"
-        app:layout_anchor="@id/textViewSignUp"
+        app:layout_anchor="@id/login_tVSignUp"
         android:layout_width="match_parent"
-        android:text="Entrar"
+        android:text="@string/login_text"
         android:background="@drawable/ripple_effect_with_background"
         android:layout_height="wrap_content"/>
 
     <TextView
         android:layout_marginBottom="50dp"
-        android:text="Não tem uma conta?"
+        android:text="@string/not_have_account"
         android:textStyle="bold"
-
         android:textSize="16dp"
         android:layout_gravity="bottom|center"
         android:textColor="@color/black"
-        android:id="@+id/textViewSignUp"
+        android:id="@+id/login_tVSignUp"
         android:background="@drawable/ripple_effect"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">

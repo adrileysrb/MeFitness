@@ -1,12 +1,27 @@
 <resources>
     <string name="app_name">Me Fitness</string>
-    <string name="title_activity_edit_data">EditDataActivity</string>
-    <!-- Strings used for fragments for navigation -->
-    <string name="first_fragment_label">First Fragment</string>
-    <string name="second_fragment_label">Second Fragment</string>
-    <string name="next">Next</string>
-    <string name="previous">Previous</string>
 
-    <string name="hello_first_fragment">Hello first fragment</string>
-    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+    <string name="entry_name">Por favor digite o seu nome</string>
+    <string name="entry_email">Por favor digite o seu email</string>
+    <string name="entry_passsword">Por favor digite a sua senha</string>
+    <string name="entry_confirm_password">Por favor confirme a sua senha</string>
+    <string name="entry_treino_name">Por favor escreva um nome para o treino</string>
+    <string name="entry_treino_description">Por favor escreva alguma descrição</string>
+
+    <string name="name_text">Nome</string>
+    <string name="password_text">Senha</string>
+    <string name="confirm_password_text">Insira novamente sua senha</string>
+    <string name="email_text">Email</string>
+    <string name="login_text">Entrar</string>
+    <string name="description_text">Descrição</string>
+    <string name="add_text">Adicionar</string>
+    <string name="treino_add_text">Treino adicionado</string>
+    <string name="treino_add_failure_text">Erro ao adicionar treino</string>
+    <string name="treino_edit_text">Treino editado com sucesso</string>
+    <string name="treino_edit_failure_text">Erro ao editar o treino</string>
+
+    <string name="have_account">Já tem uma conta?</string>
+    <string name="sign_up">Cadastre-se</string>
+    <string name="forgot_password">Esqueceu sua senha?</string>
+    <string name="not_have_account">Não tem uma conta?</string>
 </resources>

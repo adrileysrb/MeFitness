@@ -10,7 +10,6 @@ import com.google.firebase.firestore.FirebaseFirestore;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -19,64 +18,60 @@ import java.util.Date;
 
 public class TreinoEditActivity extends AppCompatActivity {
 
+    private String docID;
 
-    String a;
-    String c;
-    String dbID;
-    FirebaseFirestore db;
+    private EditText treinoName;
+    private EditText treinoDescription;
+    private Button button;
+    private Treino treino;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_treino);
 
-        EditText editText1 = findViewById(R.id.editText01);
-        EditText editText2 = findViewById(R.id.editText02);
+        init();
 
-        Button button = findViewById(R.id.button);
+        button.setOnClickListener(v -> editTreino());
+    }
 
+    public void init() {
+        treinoName = findViewById(R.id.treinoEdit_name);
+        treinoDescription = findViewById(R.id.treinoEdit_description);
+        button = findViewById(R.id.treinoEdit_btnSave);
         Intent intent = this.getIntent();
         Bundle bundle = intent.getExtras();
-
-        Treino treino = (Treino) bundle.getSerializable("value");
-
-        a = treino.getNome()+"";
-        c = treino.getDescricao()+"";
-        editText1.setText(a);
-        editText2.setText(c);
-
-        db = FirebaseFirestore.getInstance();
-        dbID = bundle.getSerializable("dbID")+"";
-
-        button.setOnClickListener(v -> {
-            a = editText1.getText().toString();
-            c = editText2.getText().toString();
-            if(a.isEmpty()){
-                editText1.setError("Por favor escreva um nome para o treino");
-                editText1.requestFocus();
-            }
-            else if(c.isEmpty()){
-                editText2.setError("Por favor escreva alguma descrição");
-                editText2.requestFocus();
-            } else{
-            FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
-            String uid = firebaseAuth.getCurrentUser().getUid();
-
-            Toast.makeText(getApplication(), "Updated", Toast.LENGTH_LONG).show();
-            db.collection(uid)
-                    .document(dbID)
-                    .update("nome", Integer.parseInt(a));
-
-            db.collection(uid)
-                    .document(dbID)
-                    .update("descricao", c);
-            db.collection(uid)
-                    .document(dbID)
-                    .update("timestramp", new Date());
-
-            Toast.makeText(TreinoEditActivity.this, "Data Saved!", Toast.LENGTH_SHORT).show();
-            finish();}
-        });
+        treino = (Treino) bundle.getSerializable("value");
+        docID = bundle.getSerializable("dbID") + "";
+        treinoName.setText(treino.getNome() + "");
+        treinoDescription.setText(treino.getDescricao() + "");
     }
+
+    public void editTreino() {
+        String name = treinoName.getText().toString();
+        String description = treinoDescription.getText().toString();
+        if (name.isEmpty()) {
+            treinoName.setError(getString(R.string.entry_treino_name));
+            treinoName.requestFocus();
+        } else if (description.isEmpty()) {
+            treinoDescription.setError(getString(R.string.entry_treino_description));
+            treinoDescription.requestFocus();
+        } else {
+            editTreinoInFirestore(name, description);
+            finish();
+        }
+    }
+
+    private void editTreinoInFirestore(String name, String description) {
+        FirebaseFirestore firebaseFirestore = FirebaseFirestore.getInstance();
+        FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
+        firebaseFirestore.collection(firebaseAuth.getCurrentUser().getUid())
+                .document(docID)
+                .update("nome", Integer.parseInt(name), "descricao", description, "timestamp", new Date())
+                .addOnSuccessListener(unused -> Toast.makeText(TreinoEditActivity.this, getString(R.string.treino_edit_text), Toast.LENGTH_SHORT).show())
+                .addOnFailureListener(e -> Toast.makeText(TreinoEditActivity.this, getString(R.string.treino_edit_failure_text), Toast.LENGTH_SHORT).show());
+    }
+
     @Override
     public void onBackPressed() {
         super.onBackPressed();

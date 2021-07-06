@@ -1,6 +1,5 @@
 package com.example.mefitness.view;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.ProgressDialog;
@@ -16,11 +15,10 @@ import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.example.mefitness.R;
-import com.example.mefitness.viewmodel.FirestoreHelper;
 import com.example.mefitness.model.Exercicio;
-import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
@@ -29,24 +27,13 @@ import java.util.UUID;
 
 public class ExercicioEditActivity extends AppCompatActivity {
 
-    Intent intent;
-    Bundle bundle;
-
-    EditText exercicioEditNome;
-    ImageView exercicioEditImage;
-    EditText exercicioEditObservacoes;
-    Button exercicioEditButton;
-
-    FirestoreHelper firestoreHelper;
-
-    //Intent Extras
-    Exercicio exercicio;
-    String docID, image;
-    int positionExercicio;
-
-    //URI da imagem
-    String imageURI="1";
-
+    private EditText exercicioEditNome;
+    private ImageView exercicioEditImage;
+    private EditText exercicioEditObservacoes;
+    private Button exercicioEditButton;
+    private Exercicio exercicio;
+    private String docID, imageURI;
+    private int positionExercicio;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,79 +41,112 @@ public class ExercicioEditActivity extends AppCompatActivity {
         setContentView(R.layout.activity_edit_exercicio);
 
         init();
+        exercicioEditImage.setOnClickListener(v -> getImageInPhone());
+        exercicioEditButton.setOnClickListener(v -> updateExercicio());
+    }
 
-        exercicioEditImage.setOnClickListener(v-> {
-                Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
-                intent.setType("image/*");
-                startActivityForResult(intent, 1);
-        });
+    private void init() {
+        exercicioEditNome = findViewById(R.id.exercicioEditNome);
+        exercicioEditImage = findViewById(R.id.exercicioEditImage);
+        exercicioEditObservacoes = findViewById(R.id.exercicioEditObservacoes);
+        exercicioEditButton = findViewById(R.id.exercicioEditButton);
+        Intent intent = this.getIntent();
+        Bundle bundle = intent.getExtras();
+        exercicio = (Exercicio) bundle.getSerializable("exercicio");
+        docID = (String) bundle.getSerializable("docID");
+        positionExercicio = Integer.parseInt(bundle.getSerializable("positionExercicio") + "");
+        exercicioEditNome.setText(exercicio.getNumber() + "");
+        exercicioEditObservacoes.setText(exercicio.getObservacoes() + "");
+        imageURI = exercicio.getImage() + "";
+        loadImage();
+    }
 
-        exercicioEditNome.setText(exercicio.getNumber()+"");
-        exercicioEditObservacoes.setText(exercicio.getObservacoes()+"");
-
+    private void loadImage() {
         RequestOptions options = new RequestOptions()
                 .centerCrop()
                 .override(200, 180)
                 .error(R.mipmap.ic_launcher_round);
-        Glide.with(ExercicioEditActivity.this).load(image).apply(options).into(exercicioEditImage);
-
-        exercicioEditButton.setOnClickListener(v -> {
-            String nome = exercicioEditNome.getText().toString();
-            String observacoes = exercicioEditObservacoes.getText().toString();
-
-            FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
-            String userID = firebaseAuth.getCurrentUser().getUid();
-            if(nome.isEmpty()){
-                exercicioEditNome.setError("Por favor escreva um nome para o exercicio");
-                exercicioEditNome.requestFocus();
-            }
-            else if(observacoes.isEmpty()){
-                exercicioEditObservacoes.setError("Por favor escreva alguma observação");
-                exercicioEditObservacoes.requestFocus();
-            } else
-                {
-                    firestoreHelper.updateExercicioEdit(userID, docID, positionExercicio, nome, imageURI+"", observacoes);
-                Toast.makeText(ExercicioEditActivity.this, "Dados atualizados", Toast.LENGTH_SHORT).show();
-                finish();}
-            });
+        Glide.with(ExercicioEditActivity.this).load(imageURI).apply(options).into(exercicioEditImage);
     }
 
+    private void getImageInPhone() {
+        Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
+        intent.setType("image/*");
+        startActivityForResult(intent, 1);
+    }
+
+    private void updateExercicio() {
+        String nome = exercicioEditNome.getText().toString();
+        String observacoes = exercicioEditObservacoes.getText().toString();
+
+        FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
+        String userID = firebaseAuth.getCurrentUser().getUid();
+        if (nome.isEmpty()) {
+            exercicioEditNome.setError("Por favor escreva um nome para o exercicio");
+            exercicioEditNome.requestFocus();
+        } else if (observacoes.isEmpty()) {
+            exercicioEditObservacoes.setError("Por favor escreva alguma observação");
+            exercicioEditObservacoes.requestFocus();
+        } else {
+            updateExercicioInFirebase(userID, docID, positionExercicio, nome, imageURI + "", observacoes);
+        }
+    }
+
+    public void updateExercicioInFirebase(String userID, String docID, int positionExercicio, String nome, String image, String observacoes) {
+        FirebaseFirestore firebaseFirestore = FirebaseFirestore.getInstance();
+        DocumentReference documentReference = firebaseFirestore.collection(userID).document(docID);
+        documentReference.update("exercicios." + positionExercicio + ".nome", nome,
+                "exercicios." + positionExercicio + ".image", image,
+                "exercicios." + positionExercicio + ".observacoes", observacoes)
+                .addOnSuccessListener(unused -> {
+                    Toast.makeText(ExercicioEditActivity.this, "Exercicio atualizado", Toast.LENGTH_SHORT).show();
+                    startActivityOnCompleteOperation();
+                })
+                .addOnFailureListener(e -> {
+                    Toast.makeText(ExercicioEditActivity.this, "Erro ao atualizar o exercicio", Toast.LENGTH_SHORT).show();
+                    startActivityOnCompleteOperation();
+                });
+    }
 
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if(requestCode == 1 && resultCode == RESULT_OK && data != null && data.getData() !=null){
-            uploadPicture( ExercicioEditActivity.this, FirebaseStorage.getInstance().getReference(), data.getData(), exercicioEditImage);
+        if (requestCode == 1 && resultCode == RESULT_OK && data != null && data.getData() != null) {
+            uploadPicture(ExercicioEditActivity.this, FirebaseStorage.getInstance().getReference(), data.getData(), exercicioEditImage);
         }
     }
 
     @Override
     public void onBackPressed() {
         super.onBackPressed();
+        Intent intent = new Intent(ExercicioEditActivity.this, ExerciciosActivity.class);
+        Bundle bundle = new Bundle();
+        bundle.putSerializable("docID", docID);
+        intent.putExtras(bundle);
+        startActivity(intent);
         overridePendingTransition(R.anim.slide_from_top, R.anim.slide_to_bottom);
     }
 
-    private String uploadPicture(Context context, StorageReference storageReference, Uri imageLocalURI, ImageView imageView){
+    private void uploadPicture(Context context, StorageReference storageReference, Uri imageLocalURI, ImageView imageView) {
         final ProgressDialog pd = new ProgressDialog(this);
         pd.setTitle("Carregando imagem...");
+        pd.setProgressStyle(R.style.Theme_AppCompat_DayNight_DarkActionBar);
         pd.show();
 
         String randomImageID = UUID.randomUUID().toString();
-        storageReference = storageReference.child("images/"+ randomImageID);
+        storageReference = storageReference.child("images/" + randomImageID);
         storageReference.putFile(imageLocalURI)
                 .addOnSuccessListener(taskSnapshot -> {
                     pd.dismiss();
                     setURIImage(FirebaseStorage.getInstance().getReference(), randomImageID);
-                    Snackbar.make(findViewById(android.R.id.content), "Imagem carregada", Snackbar.LENGTH_LONG).show();
-                    //downloadPicture(imageId);
+                    Snackbar.make(findViewById(android.R.id.content), "Imagem carregada", Snackbar.LENGTH_SHORT).show();
                     try {
                         RequestOptions options = new RequestOptions()
                                 .centerCrop()
                                 .error(R.mipmap.ic_launcher_round);
                         Glide.with(context).load(imageLocalURI).apply(options).into(imageView);
-                    }
-                    catch (Exception e){
+                    } catch (Exception e) {
                         Toast.makeText(context, "Sem pre-visualização disponivel nesta guia", Toast.LENGTH_SHORT).show();
                     }
 
@@ -136,38 +156,25 @@ public class ExercicioEditActivity extends AppCompatActivity {
                     Toast.makeText(context, "Falha no carregamento", Toast.LENGTH_LONG).show();
                 })
                 .addOnProgressListener(snapshot -> {
-                    double progressPercent = (100.00* snapshot.getBytesTransferred()/ snapshot.getTotalByteCount());
+                    double progressPercent = (100.00 * snapshot.getBytesTransferred() / snapshot.getTotalByteCount());
                     pd.setMessage("Percentage: " + (int) progressPercent + "%");
                 });
-        return randomImageID;
     }
 
-    private void setURIImage(StorageReference storageReference, String imageID){
-        storageReference.child("images/"+imageID).getDownloadUrl().addOnSuccessListener(uri -> {
-            imageURI = uri+"";
-        }).addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception exception) {
-                // Handle any errors
-                imageURI="1";
-            }
-        });
+    private void setURIImage(StorageReference storageReference, String imageID) {
+        storageReference.child("images/" + imageID).getDownloadUrl()
+                .addOnSuccessListener(uri -> imageURI = uri + "")
+                .addOnFailureListener(exception -> imageURI = "1");
     }
-    private void init(){
 
-        exercicioEditNome = findViewById(R.id.exercicioEditNome);
-        exercicioEditImage = findViewById(R.id.exercicioEditImage);
-        exercicioEditObservacoes = findViewById(R.id.exercicioEditObservacoes);
-        exercicioEditButton = findViewById(R.id.exercicioEditButton);
-
-        intent = this.getIntent();
-        bundle = intent.getExtras();
-
-        exercicio = (Exercicio) bundle.getSerializable("exercicio");
-        docID = (String) bundle.getSerializable("docID");
-        image = (String) bundle.getSerializable("image");
-        positionExercicio = Integer.parseInt(bundle.getSerializable("positionExercicio")+"") ;
-
-        firestoreHelper = new FirestoreHelper(FirebaseFirestore.getInstance());
+    private void startActivityOnCompleteOperation() {
+        Intent intent = new Intent(ExercicioEditActivity.this, ExerciciosActivity.class);
+        Bundle bundle = new Bundle();
+        bundle.putSerializable("docID", docID);
+        intent.putExtras(bundle);
+        startActivity(intent);
+        overridePendingTransition(R.anim.slide_from_top, R.anim.slide_to_bottom);
+        finish();
     }
+
 }

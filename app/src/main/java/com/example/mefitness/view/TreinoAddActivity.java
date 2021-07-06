@@ -4,63 +4,71 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.example.mefitness.viewmodel.FirestoreHelper;
 import com.example.mefitness.R;
 import com.example.mefitness.model.Treino;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.Date;
 
 public class TreinoAddActivity extends AppCompatActivity {
+
     Context context;
+    EditText treinoName;
+    EditText treinoDescription;
+    Button btnAdd;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_treino);
-        context = this;
-        FirestoreHelper firestoreHelper = new FirestoreHelper(FirebaseFirestore.getInstance());
 
-        EditText editText1 = findViewById(R.id.editTextA01);
-        EditText editText2 = findViewById(R.id.editTextA02);
-
-        FirebaseAuth a = FirebaseAuth.getInstance();
-
-        Button button = findViewById(R.id.buttonA);
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                String aa = editText1.getText().toString();
-                //String b = exercicioEditImage.getText().toString();
-                String c = editText2.getText().toString();
-                if(aa.isEmpty()){
-                    editText1.setError("Por favor escreva um nome para o treino");
-                    editText1.requestFocus();
-                }
-                else if(c.isEmpty()){
-                    editText2.setError("Por favor escreva alguma descrição");
-                    editText2.requestFocus();
-                } else{
-                Treino treino = new Treino(Integer.parseInt(editText1.getText().toString()), editText2.getText().toString(), new Date());
-                firestoreHelper.createData(a.getCurrentUser().getUid(), treino);
-                Toast.makeText(TreinoAddActivity.this, "Data Saved!", Toast.LENGTH_SHORT).show();
-                finish();}
-            }
-        });
-
-
-
-
+        init();
+        btnAdd.setOnClickListener(v -> createTreino());
     }
+
+    private void init() {
+        context = this;
+        treinoName = findViewById(R.id.treinoAdd_name);
+        treinoDescription = findViewById(R.id.treinoAdd_description);
+        btnAdd = findViewById(R.id.treinoAdd_btnAdd);
+    }
+
+    private void createTreino() {
+        String name = treinoName.getText().toString();
+        String description = treinoDescription.getText().toString();
+        if (name.isEmpty()) {
+            treinoName.setError(getString(R.string.entry_treino_name));
+            treinoName.requestFocus();
+        } else if (description.isEmpty()) {
+            treinoDescription.setError(getString(R.string.entry_treino_description));
+            treinoDescription.requestFocus();
+        } else {
+            Treino treino = new Treino(Integer.parseInt(treinoName.getText().toString()),
+                    treinoDescription.getText().toString(), new Date());
+            addTreinoInFirestore(treino);
+            finish();
+        }
+    }
+
+    private void addTreinoInFirestore(Treino treino) {
+        FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
+        FirebaseFirestore firebaseFirestore = FirebaseFirestore.getInstance();
+        DocumentReference documentReference = firebaseFirestore.collection(firebaseAuth.getCurrentUser().getUid()).document();
+        documentReference.set(treino)
+                .addOnSuccessListener(unused -> Toast.makeText(context, getString(R.string.treino_add_text), Toast.LENGTH_SHORT).show())
+                .addOnFailureListener(e -> Toast.makeText(context, getString(R.string.treino_add_failure_text), Toast.LENGTH_SHORT).show());
+    }
+
     @Override
     public void onBackPressed() {
         super.onBackPressed();
         overridePendingTransition(R.anim.slide_from_top, R.anim.slide_to_bottom);
+        finish();
     }
 }

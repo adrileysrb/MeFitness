@@ -9,22 +9,22 @@ public class Treino implements Serializable {
 
     private int nome;
     private String descricao;
-    private Date timestramp;
-    private Map<String, Object> exercicioMap = new HashMap<>();
+    private Date timestamp;
+    private Map<String, Object> exercicios = new HashMap<>();
 
 
     public Treino(){}
 
-    public Treino(int nome, String descricao, Date timestramp) {
+    public Treino(int nome, String descricao, Date timestamp) {
         this.nome = nome;
         this.descricao = descricao;
-        this.timestramp = timestramp;
+        this.timestamp = timestamp;
     }
-    public Treino(int nome, String descricao, Date timestramp, Map<String, Object> exercicioMap) {
+    public Treino(int nome, String descricao, Date timestamp, Map<String, Object> exercicios) {
         this.nome = nome;
         this.descricao = descricao;
-        this.timestramp = timestramp;
-        this.exercicioMap = exercicioMap;
+        this.timestamp = timestamp;
+        this.exercicios = exercicios;
     }
 
     public int getNome() {
@@ -43,28 +43,28 @@ public class Treino implements Serializable {
         this.descricao = descricao;
     }
 
-    public Date getTimestramp() {
-        return timestramp;
+    public Date getTimestamp() {
+        return timestamp;
     }
 
-    public void setTimestramp(Date timestramp) {
-        this.timestramp = timestramp;
+    public void setTimestamp(Date timestamp) {
+        this.timestamp = timestamp;
     }
 
-    public Map<String, Object> getExercicioMap() {
-        return exercicioMap;
+    public Map<String, Object> getExercicios() {
+        return exercicios;
     }
 
-    public void setExercicioMap(String key, Exercicio value) {
+    public void setExercicios(String key, Exercicio value) {
         Map<String, Object> exercicio = new HashMap<>();
         exercicio.put("nome", value.getNumber());
         exercicio.put("image", value.getImage());
         exercicio.put("observacoes", value.getObservacoes());
-        exercicioMap = new HashMap<>();
+        exercicios = new HashMap<>();
 
-        exercicioMap.put(key, exercicio);
+        exercicios.put(key, exercicio);
     }
-    public void setExercicioMap(Map<String, Object> value) {
-        this.exercicioMap = value;
+    public void setExercicios(Map<String, Object> value) {
+        this.exercicios = value;
     }
 }

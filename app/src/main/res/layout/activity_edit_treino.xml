@@ -12,21 +12,21 @@
         android:layout_gravity="top"
         android:layout_marginTop="10dp"
         android:inputType="number"
-        android:id="@+id/editText01"
+        android:id="@+id/treinoEdit_name"
         android:layout_width="match_parent"
         android:hint="Nome"
         android:layout_height="wrap_content"/>
     <EditText
-        android:id="@+id/editText02"
+        android:id="@+id/treinoEdit_description"
         android:layout_gravity="bottom"
         app:layout_anchorGravity="bottom"
-        app:layout_anchor="@id/editText01"
+        app:layout_anchor="@id/treinoEdit_name"
         android:layout_width="match_parent"
         android:hint="Descrição"
         android:layout_height="wrap_content"/>
     <Button
         android:layout_gravity="bottom"
-        android:id="@+id/button"
+        android:id="@+id/treinoEdit_btnSave"
         android:layout_width="match_parent"
         android:background="@color/primaryLightColor"
         android:text="Atualizar"

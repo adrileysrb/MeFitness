@@ -3,36 +3,36 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:orientation="vertical"
     android:layout_height="match_parent"
     android:layout_margin="10dp"
+    android:orientation="vertical"
     tools:context=".view.TreinoAddActivity">
 
     <EditText
-        android:layout_marginTop="10dp"
-        android:id="@+id/editTextA01"
-        android:inputType="number"
+        android:id="@+id/treinoAdd_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_gravity="top"
-        android:layout_width="match_parent"
-        android:hint="Nome"
-        android:layout_height="wrap_content"/>
-    <EditText
-        android:id="@+id/editTextA02"
+        android:layout_marginTop="10dp"
+        android:hint="@string/name_text"
+        android:inputType="number" />
 
+    <EditText
+        android:id="@+id/treinoAdd_description"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_gravity="bottom"
-        app:layout_anchorGravity="bottom"
-        app:layout_anchor="@id/editTextA01"
-        android:layout_width="match_parent"
-        android:hint="Descrição"
-        android:layout_height="wrap_content"/>
+        android:hint="@string/description_text"
+        app:layout_anchor="@id/treinoAdd_name"
+        app:layout_anchorGravity="bottom" />
+
     <Button
-        android:id="@+id/buttonA"
+        android:id="@+id/treinoAdd_btnAdd"
         android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_gravity="bottom"
         android:background="@color/primaryLightColor"
-
-        android:textColor="@color/white"
-        android:text="Adicionar"
-        android:layout_height="wrap_content"/>
+        android:text="@string/add_text"
+        android:textColor="@color/white" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
