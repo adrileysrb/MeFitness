@@ -38,9 +38,9 @@ public class TreinosAdapter extends FirestoreRecyclerAdapter<Treino, TreinosAdap
         holder.treinoNome.setText(treino.getNome() + "");
         holder.treinoDescricao.setText(treino.getDescricao());
         holder.treinoDate.setText(treino.getTimestamp().toString());
-        holder.treinoDeleteFAB.setOnClickListener(v -> deleteTreino(position));
-        holder.itemView.setOnClickListener(v -> startExerciciosActivity(treino, position));
-        holder.treinoEditFAB.setOnClickListener(v -> startExerciciosEditActivity(treino, position));
+        holder.treinoDeleteFAB.setOnClickListener(v -> deleteTreino(holder.getAdapterPosition()));
+        holder.itemView.setOnClickListener(v -> startExerciciosActivity(treino, holder.getAdapterPosition()));
+        holder.treinoEditFAB.setOnClickListener(v -> startExerciciosEditActivity(treino, holder.getAdapterPosition()));
     }
 
     private void startExerciciosEditActivity(Treino model, int position) {
