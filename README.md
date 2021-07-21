@@ -13,7 +13,7 @@ Tecnologias:
  
 </ul>
 
-Link demonstração em vídeo: https://www.youtube.com/watch?v=tltinEJu03Q
+Link demonstração em vídeo:  https://www.youtube.com/watch?v=9lYX5583RWo&ab_channel=AdrileySamuel
 
 <p><br></p>
 Screenshots:
@@ -43,10 +43,6 @@ Screenshots:
 	<img src="screenshot-04.jpg" width="270" height="480" />
 </figure>
 <p><br></p>
-<p><br></p>
-<figure>
-	<img src="screenshot-05.jpg" width="270" height="480" />
-</figure>
 <p><br></p>
 <p><br></p>
 <figure>
