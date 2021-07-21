@@ -11,6 +11,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
+import android.widget.Toolbar;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
@@ -41,6 +42,7 @@ public class ExercicioEditActivity extends AppCompatActivity {
         setContentView(R.layout.activity_edit_exercicio);
 
         init();
+
         exercicioEditImage.setOnClickListener(v -> getImageInPhone());
         exercicioEditButton.setOnClickListener(v -> updateExercicio());
     }

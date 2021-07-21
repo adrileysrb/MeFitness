@@ -13,6 +13,12 @@
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
         <item name="android:textColor">@color/white</item>
+        <item name="drawerArrowStyle">@style/MyCus</item>
+
+    </style>
+
+    <style name="Theme.MeFitness2" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
+        <item name="colorOnSecondary">@color/white</item>
     </style>
 
     <style name="Theme.MeFitness.NoActionBar">
@@ -24,4 +30,10 @@
 
     <style name="Theme.MeFitness.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
     <style name="Theme.MeFitness.Splash" parent="Theme.AppCompat.DayNight.NoActionBar" />
+
+    <style name="MyCus" parent="Widget.AppCompat.DrawerArrowToggle">
+        <item name="color">@color/white</item>
+
+    </style>
+
 </resources>

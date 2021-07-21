@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".view.FragmentTreino">
+    <com.facebook.shimmer.ShimmerFrameLayout
+        android:id="@+id/treinos_shimmerViewContainer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+            <include layout="@layout/shimmer_placeholder_layout" />
+
+            <include layout="@layout/shimmer_placeholder_layout" />
+
+            <include layout="@layout/shimmer_placeholder_layout" />
+
+            <include layout="@layout/shimmer_placeholder_layout" />
+
+            <include layout="@layout/shimmer_placeholder_layout" />
+
+            <include layout="@layout/shimmer_placeholder_layout" />
+
+            <include layout="@layout/shimmer_placeholder_layout" />
+
+            <include layout="@layout/shimmer_placeholder_layout" />
+
+            <include layout="@layout/shimmer_placeholder_layout" />
+
+            <include layout="@layout/shimmer_placeholder_layout" />
+
+            <include layout="@layout/shimmer_placeholder_layout" />
+
+            <include layout="@layout/shimmer_placeholder_layout" />
+
+            <include layout="@layout/shimmer_placeholder_layout" />
+
+            <include layout="@layout/shimmer_placeholder_layout" />
+
+            <include layout="@layout/shimmer_placeholder_layout" />
+        </LinearLayout>
+    </com.facebook.shimmer.ShimmerFrameLayout>
+
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/treinos_recycleView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:clipToPadding="false"
+        android:paddingBottom="60dp"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/treinos_fabAddTreino"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|right|end"
+        android:layout_margin="25dp"
+        android:backgroundTint="@color/white"
+        android:src="@drawable/ic_baseline_add_24" />
+
+</FrameLayout>

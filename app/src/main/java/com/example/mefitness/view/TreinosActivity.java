@@ -1,11 +1,18 @@
 package com.example.mefitness.view;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.SearchView;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.viewpager2.widget.ViewPager2;
 
 import android.content.Context;
 import android.content.Intent;
@@ -16,14 +23,20 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
 import com.example.mefitness.R;
+import com.example.mefitness.viewmodel.FragmentAdapter;
 import com.example.mefitness.viewmodel.TreinosAdapter;
 import com.example.mefitness.model.Treino;
 import com.facebook.shimmer.ShimmerFrameLayout;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.navigation.NavigationView;
+import com.google.android.material.tabs.TabLayout;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
@@ -36,143 +49,108 @@ import uk.co.deanwild.materialshowcaseview.ShowcaseConfig;
 
 import static java.lang.Thread.sleep;
 
-public class TreinosActivity extends AppCompatActivity {
+public class TreinosActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
 
-    private Context context;
-    private FloatingActionButton fabAddTreino;
-    private RecyclerView treinosRecycleView;
-    private TreinosAdapter adapter;
-    private ShimmerFrameLayout shimmerFrameLayout;
-    private String userID;
 
+
+    TabLayout tabLayout;
+    ViewPager2 viewPager2;
+    DrawerLayout drawerLayout;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_treinos);
 
-        init();
-        setTollbar();
-        setShimmerEffect();
-        tutorial();
-        startAdapter();
-        fabAddTreino.setOnClickListener((v) -> startTreinoAddActivity());
-    }
+        //init();
 
-    @Override
-    protected void onStart() {
-        super.onStart();
-        adapter.startListening();
-    }
+        drawerLayout = findViewById(R.id.main);
 
-    @Override
-    protected void onStop() {
-        super.onStop();
-        adapter.stopListening();
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        toolbar.setTitleTextColor(getColor(R.color.white));
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        toolbar.setTitle(getString(R.string.app_name));
+        NavigationView navigationView = findViewById(R.id.navigationView);
+        ActionBarDrawerToggle actionBarDrawerToggle = new ActionBarDrawerToggle(this, drawerLayout, R.string.open, R.string.close);
+        drawerLayout.addDrawerListener(actionBarDrawerToggle);
+        actionBarDrawerToggle.syncState();
+        navigationView.setNavigationItemSelectedListener(this);
+
+        ImageView imageView = navigationView.getHeaderView(0).findViewById(R.id.userimage);
+        RequestOptions options = new RequestOptions()
+                .circleCrop();
+        Glide.with(this).load(R.drawable.ic_baseline_run_circle_24).apply(options).into(imageView);
+
+        tabLayout = findViewById(R.id.tablayout);
+        tabLayout.addTab(tabLayout.newTab().setText("Treinos Personalizados"));
+        tabLayout.addTab(tabLayout.newTab().setText("Treinos Prontos"));
+
+        viewPager2 = findViewById(R.id.viewpager2);
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentAdapter fragmentAdapter = new FragmentAdapter(fragmentManager, getLifecycle());
+        viewPager2.setAdapter(fragmentAdapter);
+
+        tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+            @Override
+            public void onTabSelected(TabLayout.Tab tab) {
+                viewPager2.setCurrentItem(tab.getPosition());
+            }
+
+            @Override
+            public void onTabUnselected(TabLayout.Tab tab) {
+
+            }
+
+            @Override
+            public void onTabReselected(TabLayout.Tab tab) {
+
+            }
+        });
+        viewPager2.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
+            @Override
+            public void onPageSelected(int position) {
+                tabLayout.selectTab(tabLayout.getTabAt(position));
+            }
+        });
+
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.menu, menu);
-        return true;
+        return super.onCreateOptionsMenu(menu);
     }
 
+
     @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
-            case R.id.op1:
-                Toast.makeText(context, "Logout", Toast.LENGTH_SHORT).show();
-                startActivity(new Intent(context, LoginActivity.class));
-                overridePendingTransition(R.anim.zoom_out, R.anim.static_animation);
-                finish();
+            case android.R.id.home:
+                drawerLayout.openDrawer(GravityCompat.START);
                 return true;
-            default:
-                return super.onOptionsItemSelected(item);
         }
+        return super.onOptionsItemSelected(item);
     }
+
 
     @Override
-    public void onBackPressed() {
-        super.onBackPressed();
-        overridePendingTransition(R.anim.slide_from_left, R.anim.slide_to_right);
-    }
-
-    private void init() {
-        context = this;
-        fabAddTreino = findViewById(R.id.treinos_fabAddTreino);
-        treinosRecycleView = findViewById(R.id.treinos_recycleView);
-        shimmerFrameLayout = findViewById(R.id.treinos_shimmerViewContainer);
-        FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
-        userID = firebaseAuth.getCurrentUser().getUid();
-    }
-
-    private void setShimmerEffect() {
-        ExecutorService executor = Executors.newSingleThreadExecutor();
-        Handler handler = new Handler(Looper.getMainLooper());
-        executor.execute(() -> {
-            try {
-                sleep(3000);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
+    public boolean onNavigationItemSelected( MenuItem item) {
+        switch (item.getItemId()){
+            case R.id.optionNav1:{
+                break;
             }
-            handler.post(() -> {
-                shimmerFrameLayout.stopShimmer();
-                shimmerFrameLayout.setVisibility(View.GONE);
-            });
-        });
-    }
-
-    private void startTreinoAddActivity() {
-        Intent intent = new Intent(context, TreinoAddActivity.class);
-        startActivity(intent);
-        overridePendingTransition(R.anim.slide_from_bottom, R.anim.slide_to_top);
-
-    }
-
-    private void tutorial() {
-        ShowcaseConfig config = new ShowcaseConfig();
-        config.setDelay(2000);
-        MaterialShowcaseSequence sequence = new MaterialShowcaseSequence(this, "1");
-        sequence.setConfig(config);
-        sequence.addSequenceItem(fabAddTreino,
-                "Utilize esse botão para adicionar seus treinos", "Clique aqui para prosseguir");
-        sequence.start();
-    }
-
-    private void setTollbar() {
-        Toolbar toolbar = findViewById(R.id.toolbar);
-        toolbar.setTitle(getString(R.string.app_name));
-        toolbar.setNavigationIcon(R.drawable.ic_baseline_directions_run_24);
-        toolbar.setTitleTextColor(getResources().getColor(R.color.white));
-        setSupportActionBar(toolbar);
-    }
-
-    private void startAdapter() {
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getApplicationContext(), LinearLayoutManager.VERTICAL, false);
-        adapter = new TreinosAdapter(getTreinoList(), context);
-        treinosRecycleView.setLayoutManager(linearLayoutManager);
-        treinosRecycleView.setHasFixedSize(true);
-        treinosRecycleView.setAdapter(adapter);
-        adapter.notifyDataSetChanged();
-        new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(0,
-                ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT) {
-            @Override
-            public boolean onMove(RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder, RecyclerView.ViewHolder target) {
-                return false;
+            case R.id.optionNav2:{
+                break;
             }
-
-            @Override
-            public void onSwiped(RecyclerView.ViewHolder viewHolder, int direction) {
-                adapter.deleteTreino(viewHolder.getAdapterPosition());
+            case R.id.optionNav3:{
+                Toast.makeText(this, "Até logo", Toast.LENGTH_SHORT).show();
+                finish();
+                break;
             }
-        }).attachToRecyclerView(treinosRecycleView);
-    }
-
-    private FirestoreRecyclerOptions<Treino> getTreinoList() {
-        FirebaseFirestore db = FirebaseFirestore.getInstance();
-        Query query = db.collection(userID);
-        return new FirestoreRecyclerOptions.Builder<Treino>()
-                .setQuery(query, Treino.class)
-                .build();
+        }
+        item.setChecked(true);
+        drawerLayout.closeDrawer(GravityCompat.START);
+        return true;
     }
 }

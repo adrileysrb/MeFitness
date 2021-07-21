@@ -30,6 +30,8 @@ public class ExerciciosActivity extends AppCompatActivity {
 
         init();
 
+
+
         bindDataInRecyclerView();
         fabS.setOnClickListener(v -> startExercicioAddActivity());
     }

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/optionNav2"
+            android:icon="@drawable/ic_baseline_person_24"
+            android:title="Minha conta" />
+
+        <item
+            android:id="@+id/optionNav1"
+            android:icon="@drawable/ic_baseline_settings_24"
+            android:title="Configurações" />
+
+    </group>
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/optionNav3"
+            android:icon="@drawable/ic_baseline_exit_to_app_24"
+            android:title="Sair" />
+    </group>
+</menu>

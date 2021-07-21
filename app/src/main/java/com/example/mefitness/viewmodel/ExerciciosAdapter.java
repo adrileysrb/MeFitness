@@ -21,6 +21,7 @@ import com.bumptech.glide.request.RequestOptions;
 import com.example.mefitness.R;
 import com.example.mefitness.model.Exercicio;
 import com.example.mefitness.model.Treino;
+import com.example.mefitness.view.DetailExercicio;
 import com.example.mefitness.view.ExercicioEditActivity;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.FirebaseAuth;
@@ -28,6 +29,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -89,6 +91,19 @@ public class ExerciciosAdapter extends RecyclerView.Adapter<ExerciciosAdapter.Vi
             mLinearLayout = holder.itemView.findViewById(R.id.mainTreino);
             mLinearLayout.removeView(holder.exercicioEditFAB);
         }
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(mContext, DetailExercicio.class);
+                Bundle bundle = new Bundle();
+                bundle.putSerializable("image", exercicio.get("image")+"");
+                bundle.putSerializable("nome", exercicio.get("nome")+"");
+                bundle.putSerializable("observacoes", exercicio.get("observacoes")+"");
+                intent.putExtras(bundle);
+                mContext.startActivity(intent);
+            }
+        });
+
     }
 
     private void deleteExercicio(int position) {

@@ -28,6 +28,8 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
 
         init();
+        //***************
+        //***************
         btnLogin.setOnClickListener((v) -> login());
         tVSignUp.setOnClickListener(v -> startSignUpActivity());
         tVForgotPassword.setOnClickListener(v -> forgotPassword());
