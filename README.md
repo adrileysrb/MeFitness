@@ -2,7 +2,7 @@
  Aplicativo para gerenciamento de treinos.
  
  <div align="center">
-	<img src ="./splash.gf" alt="demo-splash" height="425">
+	<img src ="./splash.gif" alt="demo-splash" height="425">
 	</div>
  
 Tecnologias:
