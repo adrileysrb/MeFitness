@@ -29,4 +29,17 @@
 
     <string name="open">Open</string>
     <string name="close">Close</string>
+
+    <string-array name="categorias">
+        <item>Aerobico</item>
+        <item>Meditação</item>
+        <item>Hipertrofia</item>
+        <item>Musculação</item>
+    </string-array>
+
+    <string-array name="difi">
+        <item>Fácil</item>
+        <item>Media</item>
+        <item>Difícil</item>
+    </string-array>
 </resources>

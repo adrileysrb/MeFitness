@@ -1,5 +1,47 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="..\:/Users/adril/.gradle/caches/transforms-2/files-2.1/de4504a44ff1c2eebbafc7766d076565/core-1.5.0/res/layout/custom_dialog.xml" value="0.15353260869565216" />
+        <entry key="..\:/Users/adril/AndroidStudioProjects/MeFitness/app/src/main/res/drawable/bg_round.xml" value="0.1" />
+        <entry key="..\:/Users/adril/AndroidStudioProjects/MeFitness/app/src/main/res/drawable/dialog_background.xml" value="0.1" />
+        <entry key="..\:/Users/adril/AndroidStudioProjects/MeFitness/app/src/main/res/drawable/ic_background.xml" value="0.22552083333333334" />
+        <entry key="..\:/Users/adril/AndroidStudioProjects/MeFitness/app/src/main/res/drawable/map_item_child_background.xml" value="0.22552083333333334" />
+        <entry key="..\:/Users/adril/AndroidStudioProjects/MeFitness/app/src/main/res/drawable/title_background.xml" value="0.22552083333333334" />
+        <entry key="..\:/Users/adril/AndroidStudioProjects/MeFitness/app/src/main/res/layout-v21/custom_bottom_sheet_dialog.xml" value="0.1" />
+        <entry key="..\:/Users/adril/AndroidStudioProjects/MeFitness/app/src/main/res/layout-v21/custom_dialog.xml" value="0.209375" />
+        <entry key="..\:/Users/adril/AndroidStudioProjects/MeFitness/app/src/main/res/layout-v21/nav_header.xml" value="0.67" />
+        <entry key="..\:/Users/adril/AndroidStudioProjects/MeFitness/app/src/main/res/layout/activity_about.xml" value="0.14" />
+        <entry key="..\:/Users/adril/AndroidStudioProjects/MeFitness/app/src/main/res/layout/activity_add_exercicio.xml" value="0.1" />
+        <entry key="..\:/Users/adril/AndroidStudioProjects/MeFitness/app/src/main/res/layout/activity_add_treino.xml" value="0.1" />
+        <entry key="..\:/Users/adril/AndroidStudioProjects/MeFitness/app/src/main/res/layout/activity_configuration.xml" value="0.1331521739130435" />
+        <entry key="..\:/Users/adril/AndroidStudioProjects/MeFitness/app/src/main/res/layout/activity_detail_exercicio.xml" value="0.33" />
+        <entry key="..\:/Users/adril/AndroidStudioProjects/MeFitness/app/src/main/res/layout/activity_edit_exercicio.xml" value="0.1" />
+        <entry key="..\:/Users/adril/AndroidStudioProjects/MeFitness/app/src/main/res/layout/activity_edit_treino.xml" value="0.1" />
+        <entry key="..\:/Users/adril/AndroidStudioProjects/MeFitness/app/src/main/res/layout/activity_imcactivity.xml" value="0.209375" />
+        <entry key="..\:/Users/adril/AndroidStudioProjects/MeFitness/app/src/main/res/layout/activity_login.xml" value="0.10182370820668693" />
+        <entry key="..\:/Users/adril/AndroidStudioProjects/MeFitness/app/src/main/res/layout/activity_maps.xml" value="0.22" />
+        <entry key="..\:/Users/adril/AndroidStudioProjects/MeFitness/app/src/main/res/layout/activity_my_account.xml" value="0.30484037075180226" />
+        <entry key="..\:/Users/adril/AndroidStudioProjects/MeFitness/app/src/main/res/layout/activity_password_reset.xml" value="0.33" />
+        <entry key="..\:/Users/adril/AndroidStudioProjects/MeFitness/app/src/main/res/layout/activity_sign_up.xml" value="0.12545289855072464" />
+        <entry key="..\:/Users/adril/AndroidStudioProjects/MeFitness/app/src/main/res/layout/activity_stopwatch.xml" value="0.22" />
+        <entry key="..\:/Users/adril/AndroidStudioProjects/MeFitness/app/src/main/res/layout/activity_timer.xml" value="0.209375" />
+        <entry key="..\:/Users/adril/AndroidStudioProjects/MeFitness/app/src/main/res/layout/activity_treinos.xml" value="0.10182370820668693" />
+        <entry key="..\:/Users/adril/AndroidStudioProjects/MeFitness/app/src/main/res/layout/custom_bottom_sheet_dialog.xml" value="0.25" />
+        <entry key="..\:/Users/adril/AndroidStudioProjects/MeFitness/app/src/main/res/layout/custom_dialog_lat_lon.xml" value="0.15353260869565216" />
+        <entry key="..\:/Users/adril/AndroidStudioProjects/MeFitness/app/src/main/res/layout/fragment_maps.xml" value="0.1953125" />
+        <entry key="..\:/Users/adril/AndroidStudioProjects/MeFitness/app/src/main/res/layout/fragment_tools.xml" value="0.20948410630536737" />
+        <entry key="..\:/Users/adril/AndroidStudioProjects/MeFitness/app/src/main/res/layout/fragment_treinos.xml" value="0.209375" />
+        <entry key="..\:/Users/adril/AndroidStudioProjects/MeFitness/app/src/main/res/layout/item_exercicio.xml" value="0.10182370820668693" />
+        <entry key="..\:/Users/adril/AndroidStudioProjects/MeFitness/app/src/main/res/layout/item_recent_local.xml" value="0.209375" />
+        <entry key="..\:/Users/adril/AndroidStudioProjects/MeFitness/app/src/main/res/layout/item_treino.xml" value="0.67" />
+        <entry key="..\:/Users/adril/AndroidStudioProjects/MeFitness/app/src/main/res/layout/simple_list_item.xml" value="0.209375" />
+        <entry key="..\:/Users/adril/AndroidStudioProjects/MeFitness/app/src/main/res/menu/teste.xml" value="0.209375" />
+        <entry key="..\:/Users/adril/AppData/Local/Android/Sdk/platforms/android-30/data/res/layout/simple_list_item_1.xml" value="0.209375" />
+      </map>
+    </option>
+  </component>
   <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="1.8" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>

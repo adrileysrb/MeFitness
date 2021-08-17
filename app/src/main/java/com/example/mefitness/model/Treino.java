@@ -7,7 +7,7 @@ import java.util.Map;
 
 public class Treino implements Serializable {
 
-    private int nome;
+    private String nome;
     private String descricao;
     private Date timestamp;
     private Map<String, Object> exercicios = new HashMap<>();
@@ -15,23 +15,23 @@ public class Treino implements Serializable {
 
     public Treino(){}
 
-    public Treino(int nome, String descricao, Date timestamp) {
+    public Treino(String nome, String descricao, Date timestamp) {
         this.nome = nome;
         this.descricao = descricao;
         this.timestamp = timestamp;
     }
-    public Treino(int nome, String descricao, Date timestamp, Map<String, Object> exercicios) {
+    public Treino(String nome, String descricao, Date timestamp, Map<String, Object> exercicios) {
         this.nome = nome;
         this.descricao = descricao;
         this.timestamp = timestamp;
         this.exercicios = exercicios;
     }
 
-    public int getNome() {
+    public String getNome() {
         return nome;
     }
 
-    public void setNome(int nome) {
+    public void setNome(String nome) {
         this.nome = nome;
     }
 

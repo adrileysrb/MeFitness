@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:background="#E8E8E8"
     android:orientation="vertical"
-    tools:context=".view.TreinosActivity">
+    tools:context=".view.MainActivity">
 
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/appBar"

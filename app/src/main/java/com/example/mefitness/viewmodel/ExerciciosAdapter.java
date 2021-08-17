@@ -79,7 +79,7 @@ public class ExerciciosAdapter extends RecyclerView.Adapter<ExerciciosAdapter.Vi
     public void onBindViewHolder(ViewHolder holder, int position) {
         Map<String, Object> exercicio = (Map<String, Object>) mData.get(position);
         holder.exercicioNome.setText(exercicio.get("nome") + "");
-        holder.exercicioObservacoes.setText(exercicio.get("observacoes") + "");
+        holder.exercicioObservacoes.setText(exercicio.get("dificuldade") + "");
         RequestOptions options = new RequestOptions()
                 .centerCrop()
                 .override(180, 180)
@@ -99,6 +99,8 @@ public class ExerciciosAdapter extends RecyclerView.Adapter<ExerciciosAdapter.Vi
                 bundle.putSerializable("image", exercicio.get("image")+"");
                 bundle.putSerializable("nome", exercicio.get("nome")+"");
                 bundle.putSerializable("observacoes", exercicio.get("observacoes")+"");
+                bundle.putSerializable("categoria", exercicio.get("categoria")+"");
+                bundle.putSerializable("dificuldade", exercicio.get("dificuldade")+"");
                 intent.putExtras(bundle);
                 mContext.startActivity(intent);
             }
@@ -126,9 +128,11 @@ public class ExerciciosAdapter extends RecyclerView.Adapter<ExerciciosAdapter.Vi
     private void startExercicioEditActivity(Map<String, Object> exercicio, int position) {
         Map<String, Object> xy1 = (Map<String, Object>) mData.get(position);
         Exercicio e = new Exercicio(
-                Integer.parseInt(xy1.get("nome") + ""),
+                xy1.get("nome") + "",
                 xy1.get("image") + "",
-                xy1.get("observacoes") + ""
+                xy1.get("observacoes") + "",
+                xy1.get("categoria")+"",
+                xy1.get("dificuldade")+""
         );
         Intent intent = new Intent(mContext, ExercicioEditActivity.class);
         Bundle bundle = new Bundle();

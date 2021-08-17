@@ -28,8 +28,6 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
 
         init();
-        //***************
-        //***************
         btnLogin.setOnClickListener((v) -> login());
         tVSignUp.setOnClickListener(v -> startSignUpActivity());
         tVForgotPassword.setOnClickListener(v -> forgotPassword());
@@ -71,7 +69,7 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void forgotPassword() {
-        Toast.makeText(context, "Recurso não implementado", Toast.LENGTH_SHORT).show();
+        startActivity(new Intent(LoginActivity.this, PasswordResetActivity.class));
     }
 
     private void startSignUpActivity() {
@@ -82,8 +80,11 @@ public class LoginActivity extends AppCompatActivity {
 
     private void startTreinosActivity() {
         FirebaseAuth auth = FirebaseAuth.getInstance();
-        Intent a = new Intent(context, TreinosActivity.class);
-        a.putExtra("userID", auth.getCurrentUser().getUid().toString());
+        Intent a = new Intent(context, MainActivity.class);
+        Bundle bundle = new Bundle();
+        bundle.putString("userID", auth.getCurrentUser().getUid().toString());
+        bundle.putInt("from", 1);
+        a.putExtras(bundle);
         startActivity(a);
         overridePendingTransition(R.anim.zoom_in, R.anim.static_animation);
         finish();

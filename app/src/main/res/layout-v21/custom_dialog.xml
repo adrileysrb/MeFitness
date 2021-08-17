@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:padding="16sp"
+    android:layout_height="match_parent">
+
+<LinearLayout
+    android:layout_width="match_parent"
+    android:orientation="horizontal"
+    android:layout_height="60dp">
+    <com.airbnb.lottie.LottieAnimationView
+        android:tint="#002f6c"
+        android:layout_width="50dp"
+        android:id="@+id/lottie_custom_dialog"
+        app:lottie_autoPlay="true"
+        app:lottie_rawRes="@raw/running"
+        app:lottie_loop="true"
+        android:layout_height="50dp"/>
+    <TextView
+        android:padding="5dp"
+        android:textAlignment="center"
+        android:text="Digite o tempo"
+        android:textSize="20dp"
+        android:textColor="@color/black"
+        android:layout_gravity="center"
+        android:layout_width="200dp"
+        android:layout_height="50dp"/>
+</LinearLayout>
+<com.google.android.material.textfield.TextInputLayout
+    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <com.google.android.material.textfield.TextInputEditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/edit_minutes"
+        android:hint="Minutos"
+        android:inputType="number"/>
+</com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/edit_seconds"
+            android:hint="Segundos"
+            android:inputType="number"/>
+    </com.google.android.material.textfield.TextInputLayout>
+</LinearLayout>

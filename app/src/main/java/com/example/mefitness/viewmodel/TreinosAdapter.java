@@ -19,8 +19,9 @@ import com.example.mefitness.view.ExerciciosActivity;
 import com.example.mefitness.view.TreinoEditActivity;
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.firestore.DocumentSnapshot;
+
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 public class TreinosAdapter extends FirestoreRecyclerAdapter<Treino, TreinosAdapter.TreinoHolder> {
 

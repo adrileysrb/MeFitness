@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
@@ -55,6 +56,8 @@ public class SignUpActivity extends AppCompatActivity {
         userEmail = email.getText().toString();
         userPassword = password.getText().toString();
         userConfirmPassword = confirmPassword.getText().toString();
+        String x = ""+ confirmPassword.getText().toString();
+        String y = ""+ password.getText().toString();
 
         if (userName.isEmpty()) {
             name.setError(getString(R.string.entry_name));
@@ -68,13 +71,18 @@ public class SignUpActivity extends AppCompatActivity {
         } else if (userConfirmPassword.isEmpty()) {
             confirmPassword.setError(getString(R.string.entry_confirm_password));
             confirmPassword.requestFocus();
-        } else {
+        }
+        else if (x==y) {
+            confirmPassword.setError("Senhas não conferem");
+            confirmPassword.requestFocus();
+        }
+        else {
             FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
             firebaseAuth.createUserWithEmailAndPassword(userEmail, userPassword).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                 @Override
                 public void onComplete(Task<AuthResult> task) {
                     if (task.isSuccessful()) {
-                        startTreinosActivity(userName);
+                        startTreinosActivity(userName, userEmail);
                     } else {
                         Toast.makeText(context, task.getException().getMessage(), Toast.LENGTH_SHORT).show();
                     }
@@ -83,14 +91,17 @@ public class SignUpActivity extends AppCompatActivity {
         }
     }
 
-    private void startTreinosActivity(String userName) {
-        Intent intent = new Intent(context, TreinosActivity.class);
+    private void startTreinosActivity(String userName, String userEmail) {
+        Intent intent = new Intent(context, MainActivity.class);
         Bundle bundle = new Bundle();
-        bundle.putSerializable("userName", userName);
+        bundle.putSerializable("name", userName);
+        bundle.putSerializable("email", userEmail);
+        bundle.putInt("from", 2);
         intent.putExtras(bundle);
         startActivity(intent);
         Toast.makeText(context, "Conta criada com sucesso", Toast.LENGTH_SHORT).show();
         Toast.makeText(context, "Bem Vindo " + userName, Toast.LENGTH_LONG).show();
+
         finish();
     }
 

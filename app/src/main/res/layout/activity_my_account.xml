@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:focusable="true"
+    android:focusableInTouchMode="true"
+    tools:context=".view.MyAccountActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:gravity="center"
+        android:layout_height="250dp">
+        <ImageView
+            android:layout_width="200dp"
+            android:id="@+id/my_account_user_image"
+            android:src="@drawable/ic_baseline_person_24"
+            android:layout_height="200dp"
+             />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:gravity="center"
+        android:layout_margin="10dp"
+        android:layout_height="wrap_content">
+        <EditText
+            android:layout_width="match_parent"
+            android:text="Adriley Samuel"
+            android:textColor="@color/black"
+            android:textAlignment="center"
+            android:textSize="22sp"
+            android:id="@+id/my_account_user_name"
+            android:layout_height="wrap_content"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:gravity="center"
+        android:layout_margin="10dp"
+        android:layout_height="wrap_content">
+        <TextView
+            android:layout_width="match_parent"
+            android:text="adrileysrb@gmail.com"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            android:textAlignment="center"
+            android:id="@+id/my_account_user_email"
+            android:layout_height="wrap_content"/>
+    </LinearLayout>
+<com.google.android.material.button.MaterialButton
+    android:layout_width="match_parent"
+    android:layout_margin="10dp"
+    app:cornerRadius="10dp"
+    android:text="Salvar"
+    android:textColor="@color/white"
+    android:id="@+id/my_account_save_button"
+    android:layout_height="wrap_content"/>
+</LinearLayout>

@@ -1,8 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.mefitness">
-
+    <!--
+         The ACCESS_COARSE/FINE_LOCATION permissions are not required to use
+         Google Maps Android API v2, but you must specify either coarse or fine
+         location permissions for the "MyLocation" functionality.
+    -->
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
 
     <application
         android:allowBackup="true"
@@ -11,8 +17,47 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.MeFitness">
-        <activity android:name=".view.DetailExercicio"
-            android:theme="@style/Theme.MeFitness.NoActionBar"></activity>
+        <activity
+            android:name=".view.PasswordResetActivity"
+            android:exported="true" />
+        <activity
+            android:name=".view.MyAccountActivity"
+            android:exported="true" />
+        <!--
+             The API key for Google Maps-based APIs is defined as a string resource.
+             (See the file "res/values/google_maps_api.xml").
+             Note that the API key is linked to the encryption key used to sign the APK.
+             You need a different API key for each encryption key, including the release key that is used to
+             sign the APK for publishing.
+             You can define the keys for the debug and release targets in src/debug/ and src/release/.
+        -->
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="@string/google_maps_key" />
+
+        <activity
+            android:name=".view.MapsActivity"
+            android:exported="true"
+            android:theme="@style/Theme.MeFitness.NoActionBar" />
+        <activity
+            android:name=".view.TimerActivity"
+            android:theme="@style/Theme.MeFitness.NoActionBar"
+            android:exported="true" />
+        <activity
+            android:name=".view.StopwatchActivity"
+            android:theme="@style/Theme.MeFitness.NoActionBar"
+            android:exported="true" />
+        <activity
+            android:name=".view.AboutActivity"
+            android:exported="true"
+            android:theme="@style/Theme.MeFitness.NoActionBar" />
+        <activity
+            android:name=".view.Configuration"
+            android:exported="true"
+            android:theme="@style/Theme.MeFitness.NoActionBar" />
+        <activity
+            android:name=".view.DetailExercicio"
+            android:theme="@style/Theme.MeFitness.NoActionBar" />
         <activity
             android:name=".view.SplashScreen"
             android:screenOrientation="portrait"
@@ -26,7 +71,9 @@
         <activity
             android:name=".view.LoginActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/Theme.MeFitness.NoActionBar" />
+            android:theme="@style/Theme.MeFitness.NoActionBar">
+
+        </activity>
         <activity
             android:name=".view.SignUpActivity"
             android:label="Cadastre-se"
@@ -53,7 +100,7 @@
             android:label="Editar Treino"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".view.TreinosActivity"
+            android:name=".view.MainActivity"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.MeFitness.NoActionBar" />
     </application>

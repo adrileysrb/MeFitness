@@ -1,6 +1,7 @@
 package com.example.mefitness.view;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import com.example.mefitness.R;
@@ -9,6 +10,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
 
 import android.widget.Button;
 import android.widget.EditText;
@@ -31,6 +33,18 @@ public class TreinoEditActivity extends AppCompatActivity {
         setContentView(R.layout.activity_edit_treino);
 
         init();
+
+        SharedPreferences sharedPreferences = getSharedPreferences("AppSettingPref", 0);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        Boolean isNightMode = sharedPreferences.getBoolean("NightMode", false);
+
+        if(isNightMode){
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+        }
+        else{
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+        }
+
 
         button.setOnClickListener(v -> editTreino());
     }
@@ -67,7 +81,7 @@ public class TreinoEditActivity extends AppCompatActivity {
         FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
         firebaseFirestore.collection(firebaseAuth.getCurrentUser().getUid())
                 .document(docID)
-                .update("nome", Integer.parseInt(name), "descricao", description, "timestamp", new Date())
+                .update("nome", name, "descricao", description, "timestamp", new Date())
                 .addOnSuccessListener(unused -> Toast.makeText(TreinoEditActivity.this, getString(R.string.treino_edit_text), Toast.LENGTH_SHORT).show())
                 .addOnFailureListener(e -> Toast.makeText(TreinoEditActivity.this, getString(R.string.treino_edit_failure_text), Toast.LENGTH_SHORT).show());
     }

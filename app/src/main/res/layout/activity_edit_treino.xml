@@ -8,22 +8,43 @@
     android:layout_height="match_parent"
     tools:context=".view.TreinoEditActivity">
 
-    <EditText
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_gravity="top"
         android:layout_marginTop="10dp"
-        android:inputType="number"
-        android:id="@+id/treinoEdit_name"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        app:startIconDrawable="@drawable/ic_baseline_title_24"
+        >
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_marginTop="220dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:id="@+id/treinoEdit_name"
+            android:layout_width="match_parent"
+            android:hint="@string/name_text"
+            android:layout_height="wrap_content"/>
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
-        android:hint="Nome"
-        android:layout_height="wrap_content"/>
-    <EditText
-        android:id="@+id/treinoEdit_description"
+        android:layout_height="wrap_content"
         android:layout_gravity="bottom"
-        app:layout_anchorGravity="bottom"
+
         app:layout_anchor="@id/treinoEdit_name"
-        android:layout_width="match_parent"
-        android:hint="Descrição"
-        android:layout_height="wrap_content"/>
+        app:layout_anchorGravity="bottom"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        app:startIconDrawable="@drawable/ic_baseline_turned_in_not_24"
+        >
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_marginTop="220dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:id="@+id/treinoEdit_description"
+            android:layout_width="match_parent"
+            android:hint="@string/description_text"
+            android:layout_height="wrap_content"/>
+    </com.google.android.material.textfield.TextInputLayout>
     <Button
         android:layout_gravity="bottom"
         android:id="@+id/treinoEdit_btnSave"

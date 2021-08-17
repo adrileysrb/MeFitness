@@ -6,7 +6,7 @@ import androidx.lifecycle.Lifecycle;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
 
 import com.example.mefitness.view.FragmentTreino;
-import com.example.mefitness.view.NewsTreino;
+import com.example.mefitness.view.FragmentTools;
 
 public class FragmentAdapter extends FragmentStateAdapter {
     public FragmentAdapter(FragmentManager fragmentManager, Lifecycle lifecycle) {
@@ -17,7 +17,7 @@ public class FragmentAdapter extends FragmentStateAdapter {
     public Fragment createFragment(int position) {
         switch (position){
             case 1:
-                return new NewsTreino();
+                return new FragmentTools();
         }
         return new FragmentTreino();
     }

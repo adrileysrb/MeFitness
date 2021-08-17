@@ -4,23 +4,27 @@ import java.io.Serializable;
 
 public class Exercicio implements Serializable {
 
-    int nome;
+    String nome;
     String image;
     String observacoes;
+    String categoria;
+    String dificuldade;
 
     public Exercicio(){}
 
-    public Exercicio(int nome, String image, String observacoes) {
+    public Exercicio(String nome, String image, String observacoes, String categoria, String dificuldade) {
         this.nome = nome;
         this.image = image;
         this.observacoes = observacoes;
+        this.categoria = categoria;
+        this.dificuldade = dificuldade;
     }
 
-    public int getNumber() {
+    public String getNumber() {
         return nome;
     }
 
-    public void setNome(int nome) {
+    public void setNome(String nome) {
         this.nome = nome;
     }
 
@@ -38,5 +42,21 @@ public class Exercicio implements Serializable {
 
     public void setObservacoes(String observacoes) {
         this.observacoes = observacoes;
+    }
+
+    public String getCategoria() {
+        return categoria;
+    }
+
+    public void setCategoria(String categoria) {
+        this.categoria = categoria;
+    }
+
+    public String getDificuldade() {
+        return dificuldade;
+    }
+
+    public void setDificuldade(String dificuldade) {
+        this.dificuldade = dificuldade;
     }
 }

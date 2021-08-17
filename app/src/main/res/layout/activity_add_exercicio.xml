@@ -8,59 +8,106 @@
     android:layout_height="match_parent"
     tools:context=".view.ExercicioAddActivity">
 
-    <EditText
-        android:id="@+id/exercicioAddNome"
-        android:layout_width="240dp"
-        android:layout_height="45dp"
-        android:layout_marginStart="12dp"
-        android:layout_marginTop="11dp"
-        android:layout_marginEnd="24dp"
-        android:hint="Nome"
-        android:inputType="number"
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/exercicioEditNome1"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="200dp"
+        android:layout_height="60dp"
+        android:layout_gravity="bottom"
+        android:gravity="top"
+        app:layout_anchorGravity="bottom"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/exercicioAddImage"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:startIconDrawable="@drawable/ic_baseline_title_24">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/exercicioEditNome"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Nome" />
+    </com.google.android.material.textfield.TextInputLayout>
 
     <ImageView
-        android:id="@+id/exercicioAddImage"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
+        android:id="@+id/exercicioEditImage"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:layout_marginTop="5dp"
         android:background="@drawable/ic_launcher_background"
         android:src="@drawable/ic_launcher_foreground"
-        app:layout_constraintBottom_toTopOf="@+id/exercicioAddButton"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.054"
+        app:layout_constraintEnd_toStartOf="@+id/exercicioEditNome1"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.037" />
+        app:layout_constraintTop_toTopOf="parent" />
 
-    <EditText
-        android:id="@+id/exercicioAddObservacoes"
-        android:layout_width="240dp"
-        android:layout_height="45dp"
-        android:layout_marginStart="12dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="24dp"
-        android:hint="Observações"
-        app:layout_constraintBottom_toBottomOf="parent"
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/exercicioEditDificuldades1"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+        android:layout_width="200dp"
+        android:layout_height="60dp"
+        android:hint="Dificuldade"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/exercicioEditNome1"
+        app:startIconDrawable="@drawable/ic_baseline_menu_open_24">
+
+        <AutoCompleteTextView
+            android:id="@+id/exercicioEditDificuldades"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            android:inputType="none" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/exercicioEditDescricao1"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        app:layout_constraintBottom_toTopOf="@+id/exercicioEditButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/exercicioAddImage"
-        app:layout_constraintTop_toBottomOf="@+id/exercicioAddNome"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/exercicioEditDificuldades1"
+        app:layout_constraintVertical_bias="0.037"
+        app:startIconDrawable="@drawable/ic_baseline_title_24">
 
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/exercicioEditDescricao"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:hint="Descrição" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/exercicioEditCategoria1"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:startIconDrawable="@drawable/ic_baseline_menu_open_24"
+        android:hint="Categoria"
+        app:layout_constraintBottom_toTopOf="@+id/exercicioEditButton"
+        app:layout_constraintTop_toBottomOf="@+id/exercicioEditDescricao1">
+
+        <AutoCompleteTextView
+            android:layout_width="match_parent"
+            android:id="@+id/exercicioEditCategoria"
+            android:layout_height="wrap_content"
+
+            android:inputType="none" />
+
+    </com.google.android.material.textfield.TextInputLayout>
     <Button
-        android:id="@+id/exercicioAddButton"
+        android:id="@+id/exercicioEditButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/primaryLightColor"
-        android:text="Atualizar"
+        android:text="Adicionar"
         android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/exercicioAddObservacoes"
+        app:layout_constraintTop_toBottomOf="@+id/exercicioEditDificuldades1"
         app:layout_constraintVertical_bias="0.97" />
 </androidx.constraintlayout.widget.ConstraintLayout>

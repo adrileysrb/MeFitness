@@ -1,8 +1,10 @@
 package com.example.mefitness.view;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
@@ -29,13 +31,25 @@ public class TreinoAddActivity extends AppCompatActivity {
         setContentView(R.layout.activity_add_treino);
 
         init();
+
+        SharedPreferences sharedPreferences = getSharedPreferences("AppSettingPref", 0);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        Boolean isNightMode = sharedPreferences.getBoolean("NightMode", false);
+
+        if(isNightMode){
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+        }
+        else{
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+        }
+
         btnAdd.setOnClickListener(v -> createTreino());
     }
 
     private void init() {
         context = this;
-        treinoName = findViewById(R.id.treinoAdd_name);
-        treinoDescription = findViewById(R.id.treinoAdd_description);
+        treinoName = findViewById(R.id.treinoEdit_name);
+        treinoDescription = findViewById(R.id.treinoEdit_description);
         btnAdd = findViewById(R.id.treinoAdd_btnAdd);
     }
 
@@ -49,7 +63,7 @@ public class TreinoAddActivity extends AppCompatActivity {
             treinoDescription.setError(getString(R.string.entry_treino_description));
             treinoDescription.requestFocus();
         } else {
-            Treino treino = new Treino(Integer.parseInt(treinoName.getText().toString()),
+            Treino treino = new Treino(treinoName.getText().toString(),
                     treinoDescription.getText().toString(), new Date());
             addTreinoInFirestore(treino);
             finish();
