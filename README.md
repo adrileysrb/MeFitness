@@ -1,6 +1,10 @@
 # MeFitness
  Aplicativo para gerenciamento de treinos.
  
+ <div align="center">
+	<img src ="./splash.gif" alt="demo-splash" height="425">
+	</div>
+ 
 Tecnologias:
 <ul>
   <li>Android Studio</li>
