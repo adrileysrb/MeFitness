@@ -4,8 +4,8 @@
 
 <hr>
 <div align="center" >
-	<img src="./gifs/cadastro.gif" width="230" height="408" />
-	<img src="./gifs/cadastro.gif" width="230" height="408" />
+	<img src="./gifs/cadastro.gif" width="243" height="408" />
+	<img src="./gifs/cadastro.gif" width="243" height="408" />
 	<img src="./gifs/cadastro.gif" width="230" height="408" />
 	<img src="./gifs/cadastro.gif" width="230" height="408" />
 </div>
