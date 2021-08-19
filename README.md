@@ -9,8 +9,6 @@
 	<img src="./gifs/cadastro.gif" width="270" height="480" />
 </div>
 <hr>
-
-<hr>
 <div align="center">
 	<img src="./gifs/ferramentas.gif" width="270" height="480" />
 	<img src="./gifs/adicionar_treino.gif" width="270" height="480" />
@@ -18,7 +16,6 @@
 </div>
 <hr>
 
-<hr>
 <div align="center">
 	<img src="./gifs/mapss.gif" width="270" height="480" />
 	<img src="./gifs/minha_conta.gif" width="270" height="480" />
