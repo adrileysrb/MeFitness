@@ -4,17 +4,16 @@
 
 <hr>
 <div align="center" >
-	<img src="screenshot-00.jpg" width="270" height="480" />
-	<img src="screenshot-01.jpg" width="270" height="480" />
-	<img src="screenshot-04.jpg" width="270" height="480" />
-	<img src="screenshot-06.jpg" width="270" height="480" />
+	<img src="./gifs/login.gif" width="270" height="480" />
+	<img src="./gifs/cadastro.gif" width="270" height="480" />
+	<img src="./gifs/exercicios.gif" width="270" height="480" />
+	<img src="./gifs/adicionar_treino.gif" width="270" height="480" />
 </div>
 <hr>
 <div align="center">
-	<img src="screenshot-02.jpg" width="270" height="480" />
-	<img src="screenshot-03.jpg" width="270" height="480" />
-	<img src="screenshot-07.jpg" width="270" height="480" />
-	<img src="screenshot-08.jpg" width="270" height="480" />
+	<img src="./gifs/ferramentas.gif" width="270" height="480" />
+	<img src="./gifs/mapss.gif" width="270" height="480" />
+	<img src="./gifs/minha_conta.gif" width="270" height="480" />
 </div>
 <hr>
 
