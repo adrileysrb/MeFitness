@@ -4,10 +4,10 @@
 
 <hr>
 <div align="center" >
-	<img src="./gifs/splash.gif" width="210" height="420" />
-	<img src="./gifs/login.gif" width="210" height="420" />
-	<img src="./gifs/cadastro.gif" width="210" height="420" />
-	<img src="./gifs/cadastro.gif" width="210" height="420" />
+	<img src="./gifs/cadastro.gif" width="202" height="360" />
+	<img src="./gifs/cadastro.gif" width="202" height="360" />
+	<img src="./gifs/cadastro.gif" width="202" height="360" />
+	<img src="./gifs/cadastro.gif" width="202" height="360" />
 </div>
 <hr>
 <div align="center">
