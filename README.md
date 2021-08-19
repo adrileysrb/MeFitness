@@ -25,6 +25,7 @@ Tecnologias:
   <li>Firebase Firestore</li>
   <li>Firebase Authentication</li>
   <li>Firebase Storage</li>
+  <li>Google Maps</li>
   <li>MaterialShowcaseView</li>
   <li>Shimmer Effect</li>
   <li>Glide</li>
